@@ -1,15 +1,9 @@
-# [Mapping person-to-person variation in viral mutations that escape polyclonal serum targeting influenza hemagglutinin](https://elifesciences.org/articles/49324)
-Juhye M Lee, Rachel Eguia, Seth J Zost, Saket Choudhary, Patrick C Wilson, Trevor Bedford, Terry Stevens-Ayers, Michael Boeckh, Aeron C Hurt, Seema S Lakdawala, Scott E Hensley, Jesse D Bloom
+5HMG 突变效应评估：thermoMPNN 物理行为分析报告
 
-## Abstract
-A longstanding question is how influenza virus evolves to escape human immunity, which is polyclonal and can target many distinct epitopes. Here, we map how all amino-acid mutations to influenza’s major surface protein affect viral neutralization by polyclonal human sera. The serum of some individuals is so focused that it selects single mutations that reduce viral neutralization by over an order of magnitude. However, different viral mutations escape the sera of different individuals. This individual-to-individual variation in viral escape mutations is not present among ferrets that have been infected just once with a defined viral strain. Our results show how different single mutations help influenza virus escape the immunity of different members of the human population, a phenomenon that could shape viral evolution and disease susceptibility.
+## 实验背景与工具逻辑
+本研究利用 thermoMPNN（基于深度学习的蛋白质稳定性预测模型）对 H3N2 流感病毒血凝素（Hemagglutinin, PDB: 5HMG）进行系统性扫描。模型通过感知残基间的微环境（微秒级原子相互作用），评估突变对蛋白三级结构热力学的影响。
 
-## What data is shown here?
-
-We are showing the complete datasets for the sera shown in [Figure 3](https://elifesciences.org/articles/49324#fig3) of the paper.
-
-
-## Where can I find out more?
-
-- [link to paper](https://elifesciences.org/articles/49324)  
-- [link to Github repo](https://github.com/jbloomlab/map_flu_serum_Perth2009_H3_HA)
+## 核心指标解读：$\Delta\Delta G$ 
+在 thermoMPNN 的输出逻辑中，最重要的数值是突变引起的吉布斯自由能变化（$\Delta\Delta G$）。其物理含义如下：
+🟢 负数（Negative Values）：代表“稳定化突变” (Stabilizing)物理含义：突变后体系的自由能降低（$\Delta\Delta G < 0$）。生物学解释：该突变增强了 H3N2 HA 蛋白的结构热稳定性。这意味着病毒蛋白在高温或极端环境下更不容易变性，可能有助于病毒的存活或组装。
+🔴 正数（Positive Values）：代表“去稳定化突变” (Destabilizing)物理含义：突变后体系的自由能升高（$\Delta\Delta G > 0$）。生物学解释：该突变破坏了原有的侧链封装、氢键网络或疏水核心。对于病毒来说，这种突变通常是“有害”的，可能导致蛋白折叠错误。
